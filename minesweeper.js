@@ -71,47 +71,55 @@ function startGame () {
     var cell = board.cells[i]
     var countOf = countSurroundingMines(cell)  
     cell.surroundingMines = countOf   
-    document.addEventListener('click', checkForWin()); 
-    document.addEventListener('contextmenu', checkForWin());
+    document.addEventListener('click', checkForWin())
+    document.addEventListener('contextmenu', checkForWin())
   }  
   lib.initBoard() 
 }
+/*
+function startGame () {
+  for (var i = 0; i < board.cells.length; i++) { 
+    var cell = board.cells[i]
+    var countOf = countSurroundingMines(cell)  
+    cell.surroundingMines = countOf   
+    document.addEventListener('click', checkForWin( {
+      isMarked = true
+    }))
+    document.addEventListener('contextmenu', checkForWin( {
+      isMarked = true
+    }))
+  }  
+  lib.initBoard() 
+}
+*/
 
 // document.addEventListener('click', checkForWin(); 
-// document.addEventListener('contextmenu', checkForWin(); - Do these go in for loop?
+// document.addEventListener('contextmenu', checkForWin(); 
 
 
 
 
-
+// add event for .isMarked?? when a document cell is clicked
+// var marked = board.cells.isMarked.addEventListener('click', () => {
+  //board.cells.isMarked = true
 
 // Define this function to look for a win condition:
 //
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin () {
-var marked = board.cells.isMarked
-var mine = board.cells.isMine
-
   for (var i = 0; i < board.cells.length; i++) {
-    if (mine[i] === true && marked[i] === false || mine[i] === false && marked[i] === false) {
-      return false;
-    } else {
-      return lib.displayMessage('You win!')
+    cell = board.cells[i]
+    if (cell.isMine === true && cell.isMarked === true || cell.isMine === false && cell.hidden === false) {
+        lib.displayMessage('You win!')
+    }
+    else {
+      return
     }
   }
 };
 
-  // You can use this function call to declare a winner
-  //   return lib.displayMessage('You win!')
 
-
-// both .isMine and .isMarked are true . 
-// If any mine isn't marked, you can return to exit out of the function.
-// If every mine is marked, but there are still cells with the hidden property set to true, the player hasn't won yet and you can return out of the function.
-
-// If both these criteria pass, the player has won!
-//.isMarked === true && .isMine === true
 
 
 
@@ -131,4 +139,6 @@ function countSurroundingMines (cell) {
 // just writing function of how to count the surrounding cells for ay given cell
 
 // loop through surrounding array to see if isMine === true 
-// return the num of bombs surrounding to funtion 
+// return the num of bombs surrounding to funtion
+
+console.log(board.cells)
