@@ -71,56 +71,31 @@ function startGame () {
     var cell = board.cells[i]
     var countOf = countSurroundingMines(cell)  
     cell.surroundingMines = countOf   
-    document.addEventListener('click', checkForWin())
-    document.addEventListener('contextmenu', checkForWin())
   }  
+  document.addEventListener('click', checkForWin)
+  document.addEventListener('contextmenu', checkForWin)
   lib.initBoard() 
-}
-/*
-function startGame () {
-  for (var i = 0; i < board.cells.length; i++) { 
-    var cell = board.cells[i]
-    var countOf = countSurroundingMines(cell)  
-    cell.surroundingMines = countOf   
-    document.addEventListener('click', checkForWin( {
-      isMarked = true
-    }))
-    document.addEventListener('contextmenu', checkForWin( {
-      isMarked = true
-    }))
-  }  
-  lib.initBoard() 
-}
-*/
-
-// document.addEventListener('click', checkForWin(); 
-// document.addEventListener('contextmenu', checkForWin(); 
+};
 
 
-
-
-// add event for .isMarked?? when a document cell is clicked
-// var marked = board.cells.isMarked.addEventListener('click', () => {
-  //board.cells.isMarked = true
 
 // Define this function to look for a win condition:
 //
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
+
 function checkForWin () {
   for (var i = 0; i < board.cells.length; i++) {
     cell = board.cells[i]
-    if (cell.isMine === true && cell.isMarked === true || cell.isMine === false && cell.hidden === false) {
-        lib.displayMessage('You win!')
-    }
-    else {
+    if (cell.isMine && !cell.isMarked || cell.hidden && !cell.isMine) {
       return
     }
   }
+      lib.displayMessage('You win!')
 };
 
-
-
+// if any win condition isn't meet, return out of function 
+// else diplay you win!
 
 
 function countSurroundingMines (cell) {
