@@ -1,64 +1,31 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {
-      cells: [
-        { 
-          row: 0, 
-          col: 0, 
-          isMine: false,
-          hidden: true
-        }, 
-        { 
-          row: 0,
-          col: 1, 
-          isMine: false,
-          hidden: true
-        }, 
-        {
-          row: 0,
-          col: 2, 
-          isMine: true, 
-          hidden: true
-        },
-        { 
-          row: 1,
-          col: 0,
-          isMine: true, 
-          hidden: true
-        },
-        { 
-          row: 1,
-          col: 1,
-          isMine: false, 
-          hidden: true
-        },
-        {
-          row: 1,
-          col: 2,
-          isMine: false, 
-          hidden: true
-        },
-        {
-          row: 2,
-          col: 0,
-          isMine: false, 
-          hidden: true
-        },
-        { 
-          row: 2,
-          col: 1,
-          isMine: true, 
-          hidden: true
-        },
-        {
-          row: 2,
-          col: 2,
-          isMine: false, 
-          hidden: true
-        },
-      ]
-  };
+
+// automatically generate board 
+  // size of board 3 by 3
+  // define function with the gameBoard as the parameters
+  // use local variables to create object, the 'cells' 
+  // loop through gameboard and set mines at math.random to 25% 
+  // board.cells[arr] = 
+
+
+function generateBoard(table) {
+  var board = new Object();     // define new board object 
+  board.cells = [];     //cells is the property of board and is an empty array
+  var cell = 0;     // cell is the var which will be replaced with properties
+  // loop through table length to give value to row and column properties
+    for (var i = 0; i < table; i++) {     // assign row index
+      for (var j = 0; j < table; j++) {   // assign to col index 
+        board.cells[cell] = {row: i, col: j, isMine: true, hidden: true}; // create object with properties and values
+        cell++;    // each loop will create a new cell board.cells.cell[0], board.cells.cell[1]
+      }
+    }
+  return board     //return board object to table value
+};
+// define table/ board size using generator function
+board = generateBoard(4);
+
 
 
 
@@ -116,4 +83,7 @@ function countSurroundingMines (cell) {
 // loop through surrounding array to see if isMine === true 
 // return the num of bombs surrounding to funtion
 
-console.log(board.cells)
+// reset board to restart game 
+
+
+// reset game 
